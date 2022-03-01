@@ -7,8 +7,8 @@ import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-console.log("Route:", Route);
-console.log("Routes:", Routes);
+// console.log("Route:", Route);
+// console.log("Routes:", Routes);
 
 export const App = () => {
   return (
