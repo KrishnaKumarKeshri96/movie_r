@@ -1,5 +1,12 @@
 import React from "react";
 
+import { MovieListing } from "../MovieListing/MovieListing";
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <div className="banner-img"></div>
+      <MovieListing />
+    </>
+  );
 };
