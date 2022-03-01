@@ -12,7 +12,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       await fetchApi
-        .get(`?apiKey=${APIKEY}&s=Harry&type=movie`)
+        .get(`?apiKey=${APIKEY}&s=Harry Potter&type=movie`)
         .then((success) => dispatch(addMovies(success.data)))
 
         .catch((error) => console.log(error));
