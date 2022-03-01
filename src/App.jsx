@@ -3,6 +3,7 @@ import { Header } from "./components/Header/Header";
 import { Home } from "./components/Home/Home";
 import { MovieDetail } from "./components/MovieDetail/MovieDetail";
 import { Footer } from "./components/Footer/Footer";
+import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -15,11 +16,14 @@ export const App = () => {
       <div className="app">
         <BrowserRouter>
           <Header></Header>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/movie/:imdbId" element={<MovieDetail />}></Route>
-            <Route path="*" element={<h1>Nott Found</h1>}></Route>
-          </Routes>
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/movie/:imdbId" element={<MovieDetail />}></Route>
+              <Route path="*" element={<PageNotFound />}></Route>
+            </Routes>
+          </div>
+
           <Footer />
         </BrowserRouter>
       </div>
