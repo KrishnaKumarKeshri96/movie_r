@@ -7,6 +7,32 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  .search {
+    width: 30vw;
+    height: 8vh;
+    display: flex;
+    min-height: 40px; // justify-content: space-between;
+    // background-color: aquamarine;
+    input {
+      height: 100%;
+      width: 85%;
+      border: none;
+      padding: 0 10px;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      height: 100%;
+      width: 15%;
+      border: none;
+      cursor: pointer;
+      &:active {
+        background-color: #fff;
+      }
+    }
+  }
 }
 .logo {
   color: $quartzColor;
