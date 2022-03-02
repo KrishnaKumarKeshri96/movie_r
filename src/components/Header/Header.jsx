@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import user from "../../images/user.png";
 import "./Header.scss";
+import { useDispatch } from "react-redux";
+import { fetchMovie, fetchShows } from "../../features/movies/movieSlice";
 
 export const Header = () => {
   const [searchTern, setsearchTern] = useState("");
+  const dispatch = useDispatch();
   return (
     <>
       <div className="header">
@@ -22,7 +25,14 @@ export const Header = () => {
             }}
             placeholder="Search Movie Or Show"
           />
-          <button onClick={() => console.log(searchTern)}>
+          <button
+            disabled={searchTern === "" ? true : false}
+            onClick={() => {
+              dispatch(fetchShows(searchTern));
+              dispatch(fetchMovie(searchTern));
+              setsearchTern("");
+            }}
+          >
             <i className="fa fa-search"></i>
           </button>
         </div>

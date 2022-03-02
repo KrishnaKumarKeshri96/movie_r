@@ -11,7 +11,8 @@
     width: 30vw;
     height: 8vh;
     display: flex;
-    min-height: 40px; // justify-content: space-between;
+    min-height: 40px;
+    // justify-content: space-between;
     // background-color: aquamarine;
     input {
       height: 100%;
@@ -27,9 +28,10 @@
       height: 100%;
       width: 15%;
       border: none;
+      background-color: #fff;
       cursor: pointer;
       &:active {
-        background-color: #fff;
+        color: $quartzColor;
       }
     }
   }

@@ -17,11 +17,13 @@ export const MovieListing = () => {
           <h2>Movie List</h2>
           <div className="movie-container">
             <Slider {...settings}>
-              {allMovie.Response === "True"
-                ? allMovie.Search.map((movie, index) => (
-                    <MovieCard key={index} {...movie} />
-                  ))
-                : null}
+              {allMovie.Response === "True" ? (
+                allMovie.Search.map((movie, index) => (
+                  <MovieCard key={index} {...movie} />
+                ))
+              ) : (
+                <h1>{allMovie.Error}</h1>
+              )}
             </Slider>
           </div>
         </div>
@@ -29,11 +31,13 @@ export const MovieListing = () => {
           <h2>Show List</h2>
           <div className="movie-container">
             <Slider {...settings}>
-              {allShows.Response === "True"
-                ? allShows.Search.map((movie, index) => (
-                    <MovieCard key={index} {...movie} />
-                  ))
-                : null}
+              {allShows.Response === "True" ? (
+                allShows.Search.map((movie, index) => (
+                  <MovieCard key={index} {...movie} />
+                ))
+              ) : (
+                <h1>{allShows.Error}</h1>
+              )}
             </Slider>
           </div>
         </div>
