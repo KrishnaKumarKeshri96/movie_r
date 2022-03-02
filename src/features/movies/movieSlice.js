@@ -4,6 +4,7 @@ import { APIKEY } from "../../common/apis/movieApiKey";
 
 const initialState = {
   movies: {},
+  shows: {},
 };
 
 export const fetchMovie = createAsyncThunk("movies/fetchMovie", async () => {
@@ -13,14 +14,23 @@ export const fetchMovie = createAsyncThunk("movies/fetchMovie", async () => {
   return response.data;
 });
 
+export const fetchShows = createAsyncThunk("movies/fetchShows", async () => {
+  const response = await fetchApi.get(
+    `?apiKey=${APIKEY}&type=series&s=Friends&page=1 `
+  );
+  return response.data;
+});
+
 const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {
-    addMovies: (state, { payload }) => {
-      state.movies = payload;
-    },
-  },
+
+  // reducer is not required For Async Function.
+  // reducers: {
+  //   addMovies: (state, { payload }) => {
+  //     state.movies = payload;
+  //   },
+  // },
   extraReducers: {
     [fetchMovie.pending]: () => console.log("Pending State"),
     [fetchMovie.fulfilled]: (state, { payload }) => {
@@ -28,10 +38,15 @@ const movieSlice = createSlice({
       return { ...state, movies: payload };
     },
     [fetchMovie.rejected]: () => console.log("Failed"),
+    [fetchShows.fulfilled]: (state, { payload }) => {
+      console.log("Fulfilled", state, payload);
+      return { ...state, shows: payload };
+    },
   },
 });
 
-export const { addMovies } = movieSlice.actions;
+// export const { addMovies } = movieSlice.actions; not required for async actions
 
 export const getAllMovies = (state) => state.movies.movies;
+export const getAllSeries = (state) => state.movies.shows;
 export const movieReducer = movieSlice.reducer;
