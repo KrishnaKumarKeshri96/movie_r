@@ -3,6 +3,13 @@
 .card-item {
   background-color: $secondaryColor;
   cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: all 0.4s;
+    box-shadow: rgb(247, 245, 245) 0px 1px 4px;
+  }
 
   .card-top {
     height: 300px;

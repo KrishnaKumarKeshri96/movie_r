@@ -5,21 +5,30 @@ import { APIKEY } from "../../common/apis/movieApiKey";
 const initialState = {
   movies: {},
   shows: {},
+  showDetails: {},
 };
 
 export const fetchMovie = createAsyncThunk("movies/fetchMovie", async () => {
-  const response = await fetchApi.get(
-    `?apiKey=${APIKEY}&s=Harry Potter&type=movie`
-  );
+  const response = await fetchApi.get(`?apiKey=${APIKEY}&s=Hero&type=movie`);
   return response.data;
 });
 
 export const fetchShows = createAsyncThunk("movies/fetchShows", async () => {
   const response = await fetchApi.get(
-    `?apiKey=${APIKEY}&type=series&s=Friends&page=1 `
+    `?apiKey=${APIKEY}&type=series&s=game&page=3`
   );
   return response.data;
 });
+
+export const fetchShowOrMovieDetail = createAsyncThunk(
+  "movies/fetchShowOrMovieDetail",
+  async (imdbId) => {
+    const response = await fetchApi.get(
+      `?apiKey=${APIKEY}&i=${imdbId}&plot=full`
+    );
+    return response.data;
+  }
+);
 
 const movieSlice = createSlice({
   name: "movies",
@@ -39,8 +48,12 @@ const movieSlice = createSlice({
     },
     [fetchMovie.rejected]: () => console.log("Failed"),
     [fetchShows.fulfilled]: (state, { payload }) => {
-      console.log("Fulfilled", state, payload);
+      // console.log("Fulfilled", state, payload);
       return { ...state, shows: payload };
+    },
+    [fetchShowOrMovieDetail.fulfilled]: (state, { payload }) => {
+      // console.log("Fulfilled", state, payload);
+      return { ...state, showDetails: payload };
     },
   },
 });
@@ -49,4 +62,5 @@ const movieSlice = createSlice({
 
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllSeries = (state) => state.movies.shows;
+export const getDetails = (state) => state.movies.showDetails;
 export const movieReducer = movieSlice.reducer;
