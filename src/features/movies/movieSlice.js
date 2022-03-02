@@ -35,11 +35,14 @@ const movieSlice = createSlice({
   initialState,
 
   // reducer is not required For Async Function.
-  // reducers: {
-  //   addMovies: (state, { payload }) => {
-  //     state.movies = payload;
-  //   },
-  // },
+  reducers: {
+    // addMovies: (state, { payload }) => {
+    //   state.movies = payload;
+    // },
+    removeShowOrMovieDetail: (state) => {
+      state.showDetails = {};
+    },
+  },
   extraReducers: {
     [fetchMovie.pending]: () => console.log("Pending State"),
     [fetchMovie.fulfilled]: (state, { payload }) => {
@@ -59,6 +62,7 @@ const movieSlice = createSlice({
 });
 
 // export const { addMovies } = movieSlice.actions; not required for async actions
+export const { removeShowOrMovieDetail } = movieSlice.actions;
 
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllSeries = (state) => state.movies.shows;
