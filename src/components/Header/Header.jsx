@@ -12,13 +12,14 @@ export const Header = () => {
   const [searchTern, setsearchTern] = useState("");
   const dispatch = useDispatch();
   const getDetail = useSelector(getDetails);
+  console.log("getDetail:", getDetail);
   return (
     <>
       <div className="header">
         <Link to="/">
           <div className="logo">FindYourMovie</div>
         </Link>
-        {!getDetail ? (
+        {!getDetail.Title ? (
           <div className="search">
             <input
               type="text"
