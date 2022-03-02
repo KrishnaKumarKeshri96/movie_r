@@ -22,7 +22,7 @@ export const fetchShows = createAsyncThunk(
   "movies/fetchShows",
   async (term = "game") => {
     const response = await fetchApi.get(
-      `?apiKey=${APIKEY}&type=series&s=${term}&page=3`
+      `?apiKey=${APIKEY}&type=series&s=${term}`
     );
     return response.data;
   }
